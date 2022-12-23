@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 from flask import Flask, render_template, request, redirect, flash, url_for
 
 
@@ -34,7 +35,8 @@ def showSummary():
         return render_template(
             'welcome.html',
             club=club,
-            competitions=competitions
+            competitions=competitions,
+            date=str(datetime.now())
         )
     except IndexError:
         return render_template(
