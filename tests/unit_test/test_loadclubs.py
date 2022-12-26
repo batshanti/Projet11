@@ -2,12 +2,11 @@ import server
 
 
 def test_loadclubs_should_return_clubs_list():
-
     expected_result = [
         {
             "name": "Simply Lift",
             "email": "john@simplylift.co",
-            "points": "25"
+            "points": "13"
         },
         {
             "name": "Iron Temple",
@@ -18,5 +17,11 @@ def test_loadclubs_should_return_clubs_list():
             "name": "She Lifts",
             "email": "kate@shelifts.co.uk",
             "points": "12"
-        }]
-    assert server.loadClubs() == expected_result
+        },
+        {
+            "name": "test club",
+            "email": "testclub@gmail.com",
+            "points": "20"
+        }
+    ]
+    assert server.loadClubs("tests/test_clubs.json") == expected_result

@@ -1,16 +1,17 @@
 import json
+import os
 from datetime import datetime
 from flask import Flask, render_template, request, redirect, flash, url_for
 
 
-def loadClubs():
-    with open('clubs.json') as c:
+def loadClubs(data):
+    with open(data) as c:
         listOfClubs = json.load(c)['clubs']
         return listOfClubs
 
 
-def loadCompetitions():
-    with open('competitions.json') as comps:
+def loadCompetitions(data):
+    with open(data) as comps:
         listOfCompetitions = json.load(comps)['competitions']
         return listOfCompetitions
 
@@ -18,8 +19,12 @@ def loadCompetitions():
 app = Flask(__name__)
 app.secret_key = 'something_special'
 
-competitions = loadCompetitions()
-clubs = loadClubs()
+if os.environ["ENV"] == "TEST":
+    competitions = loadCompetitions("tests/test_competitions.json")
+    clubs = loadClubs("tests/test_clubs.json")
+else:
+    competitions = loadCompetitions('competitions.json')
+    clubs = loadClubs('clubs.json')
 
 
 @app.route('/')
@@ -103,5 +108,4 @@ def logout():
     return redirect(url_for('index'))
 
 
-if __name__ == "__main__":
-    app.run()
+
