@@ -76,6 +76,9 @@ def purchasePlaces():
     elif placesRequired > 12:
         flash("You can't book more than 12 places in a competition.")
 
+    elif placesRequired > int(competition['numberOfPlaces']):
+        flash('Not enough places available.')
+
     else:
         competition['numberOfPlaces'] = int(
             competition['numberOfPlaces']) - placesRequired
