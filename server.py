@@ -85,7 +85,8 @@ def purchasePlaces():
     return render_template(
         'welcome.html',
         club=club,
-        competitions=competitions
+        competitions=competitions,
+        date=str(datetime.now())
     )
 
 
