@@ -28,7 +28,6 @@ except KeyError:
     competitions = loadCompetitions('competitions.json')
     clubs = loadClubs('clubs.json')
 
-
 @app.route('/')
 def index():
     return render_template('index.html')
