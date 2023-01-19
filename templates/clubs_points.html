@@ -1,0 +1,10 @@
+<h2>Points available by club </h2>
+
+    <ul>
+        {% for club in clubs %}
+        <li>
+            Club: {{club['name']}} / points: {{club['points']}}
+        </li>
+        {% endfor %}
+    </ul>
+    <hr />
