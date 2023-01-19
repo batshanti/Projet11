@@ -19,13 +19,14 @@ def loadCompetitions(data):
 app = Flask(__name__)
 app.secret_key = 'something_special'
 
-if os.environ["ENV"] == "TEST":
-    competitions = loadCompetitions("tests/test_competitions.json")
-    clubs = loadClubs("tests/test_clubs.json")
-else:
+try:
+    if os.environ["ENV"] == "TEST":
+        competitions = loadCompetitions("tests/test_competitions.json")
+        clubs = loadClubs("tests/test_clubs.json")
+
+except KeyError:
     competitions = loadCompetitions('competitions.json')
     clubs = loadClubs('clubs.json')
-
 
 @app.route('/')
 def index():
